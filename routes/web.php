@@ -6,6 +6,7 @@ use App\Http\Controllers\AmisController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentaireController;
+use App\Http\Controllers\MessageController;
 
 use App\Livewire\Profile;
 
@@ -54,6 +55,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::get('/profil/{userId}', Profile::class)->name('profil.show');
 
     Route::get('/profile/posts', [PostController::class, 'profile_auth'])->name('posts.profile');
+
+// route pour message
+    Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index');
 
 });
 

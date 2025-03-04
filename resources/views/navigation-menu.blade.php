@@ -35,18 +35,33 @@
                 <!-- Action buttons with pulsing effect -->
                 <div class="flex space-x-3 mr-3">
                     <!-- Notification Icon -->
-                    <button class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 relative shadow-md">
+                    <button onclick="toggleModal()" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 relative shadow-md">
                         <i class="fas fa-bell text-lg"></i>
-                        <!-- Animated notification badge -->
                         <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md animate-pulse">
-                            3
+                              3
                         </span>
                     </button>
 
-                    <button class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md">
+                    <!-- Messenger Icon -->
+                    <a href="{{ route('message.index') }}" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md">
                         <i class="fa-brands fa-facebook-messenger text-xl"></i>
-                    </button>
+                    </a>
                 </div>
+                <div id="notificationModal" class="hidden fixed top-16 right-1 bg-black text-white p-4 rounded-lg shadow-lg w-96 border border-indigo-500">
+                    <div class="flex justify-between items-center border-b border-gray-700 pb-2">
+                        <h2 class="text-lg font-semibold text-indigo-400">Notifications</h2>
+                        <button onclick="toggleModal()" class="text-gray-400 hover:text-white transition-all duration-200">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    <ul class="mt-3 space-y-2">
+                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 1</li>
+                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 2</li>
+                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 3</li>
+                    </ul>
+                </div>
+
+
 
                 <!-- Settings Dropdown with glass morphism effect -->
                 <div class="ms-3 relative">
@@ -165,4 +180,9 @@
             </div>
         </div>
     </div>
+    <script>
+        function toggleModal() {
+            document.getElementById("notificationModal").classList.toggle("hidden");
+        }
+    </script>
 </nav>

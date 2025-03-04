@@ -44,7 +44,7 @@ composer install
 npm install
 
 # Copier le fichier d'environnement
-cp .env.example .env
+cp .env .env
 
 # Générer la clé d'application
 php artisan key:generate
