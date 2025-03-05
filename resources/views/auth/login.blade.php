@@ -47,22 +47,33 @@
         </form>
 
         <!-- Boutons de connexion sociale -->
-        <div class="mt-6">
-            <p class="text-center text-gray-500 font-medium">Ou connectez-vous avec</p>
+        <div class="mt-8">
+            <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                    <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-center text-sm">
+                    <span class="px-4 text-gray-500 bg-white">Ou connectez-vous avec</span>
+                </div>
+            </div>
 
-            <div class="flex justify-center mt-4 space-x-4">
+            <div class="mt-6 grid grid-cols-1 gap-3">
                 <!-- Bouton Google -->
                 <a href="{{ route('social.redirect', 'google') }}"
-                    class="flex items-center px-6 py-2 text-white bg-red-500 hover:bg-red-600 rounded-lg shadow-md transition-all">
-                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" class="w-5 h-5 mr-2" alt="Google logo">
-                    Connexion avec Google
+                    class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-all duration-200">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg"
+                         class="h-5 w-5 mr-2"
+                         alt="Google logo">
+                    <span>Continuer avec Google</span>
                 </a>
 
                 <!-- Bouton Facebook -->
                 <a href="{{ route('social.redirect', 'facebook') }}"
-                    class="flex items-center px-6 py-2 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition-all">
-                    <img src="https://www.svgrepo.com/show/303114/facebook-3-logo.svg" class="w-5 h-5 mr-2" alt="Facebook logo">
-                    Connexion avec Facebook
+                    class="w-full inline-flex justify-center items-center px-4 py-2.5 border border-transparent rounded-md shadow-sm bg-[#1877F2] text-sm font-medium text-white hover:bg-[#0c64d3] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#1877F2] transition-all duration-200">
+                    <img src="https://www.svgrepo.com/show/303114/facebook-3-logo.svg"
+                         class="h-5 w-5 mr-2"
+                         alt="Facebook logo">
+                    <span>Continuer avec Facebook</span>
                 </a>
             </div>
         </div>
