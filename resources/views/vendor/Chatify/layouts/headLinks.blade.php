@@ -9,6 +9,8 @@
 <meta name="url" content="{{ url('').'/'.config('chatify.routes.prefix') }}" data-user="{{ Auth::user()->id }}">
 
 {{-- scripts --}}
+{{--<script src="https://unpkg.com/@tailwindcss/browser@4"></script>--}}
+
 <script
   src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/chatify/font.awesome.min.js') }}"></script>

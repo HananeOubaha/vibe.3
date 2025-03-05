@@ -18,7 +18,6 @@ class PostController extends Controller
 
     public function index()
     {
-        $notifCount = ChMessage::where('seen', 0)->count();
 
         $utilisateur = auth()->user();
         $demandesRecues=DemandeAmitie::where('utilisateur_recepteur_id', $utilisateur->id)
@@ -47,7 +46,7 @@ class PostController extends Controller
 
         $amis = $utilisateur->amisEnvoyes->merge($utilisateur->amisRecus);
 
-        return view('dashboard', compact('posts','demandesRecues','comments','likes','amis','notifCount'));
+        return view('dashboard', compact('posts','demandesRecues','comments','likes','amis'));
     }
 
 

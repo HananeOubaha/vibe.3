@@ -61,7 +61,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::get('/chat', [MessageController::class, 'index'])->name('chat');
     Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send-message');
 
-    Route::get('/shownotif', [MessageController::class, 'showcountnotif'])->name('shownotif');
 
 
 });

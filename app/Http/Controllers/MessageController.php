@@ -12,11 +12,7 @@ use App\Models\ChMessage;
 
 class MessageController extends Controller
 {
-    public function showcountnotif(){
-        $notifCount = ChMessage::where('seen', 0);
-        $test=$notifCount->count();
-        return view('navigation-menu', compact('test'));
-    }
+
     public function index(){
         $users = User::all();
         $notifications = auth()->user()->notifications;
