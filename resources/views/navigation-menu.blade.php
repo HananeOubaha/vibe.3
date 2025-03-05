@@ -38,12 +38,12 @@
                     <button onclick="toggleModal()" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 relative shadow-md">
                         <i class="fas fa-bell text-lg"></i>
                         <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md animate-pulse">
-                              3
+
                         </span>
                     </button>
 
                     <!-- Messenger Icon -->
-                    <a href="{{ route('message.index') }}" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md">
+                    <a href="{{ route('chat') }}" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md">
                         <i class="fa-brands fa-facebook-messenger text-xl"></i>
                     </a>
                 </div>
