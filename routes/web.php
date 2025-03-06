@@ -10,6 +10,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\CustomChatifyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send-message');
 
 
+
+    Route::post('/messages/send', [CustomChatifyController::class, 'send'])->name('messages.send');
 
 });
 
