@@ -33,6 +33,8 @@ class User extends Authenticatable  implements MustVerifyEmail
         'prenom',
         'bio',
         'last_seen',
+        'invitation_token', // Ajout du token
+        'invitation_expires_at', // Ajout de la date d'expiration
     ];
 
     /**
@@ -54,6 +56,7 @@ class User extends Authenticatable  implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'invitation_expires_at' => 'datetime', // Ajout du cast pour la date
     ];
 
     /**

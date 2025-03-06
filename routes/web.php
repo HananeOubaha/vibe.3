@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\InvitationController;
+use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AmisController;
@@ -8,8 +10,6 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\CommentaireController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\MessageController;
-
-use App\Livewire\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
 
     Route::post('/accepter-demande/{id}', [AmisController::class, 'accepterDemandeAmitie'])->name('accepterDemandeAmitie');
     Route::delete('/refuser-demande/{id}', [AmisController::class, 'refuserDemandeAmitie'])->name('refuserDemandeAmitie');
-    Route::delete('/anuller-demande/{id}', [AmisController::class, 'AnnulerDemandeAmitie'])->name('AnnulerDemandeAmitie');
+    Route::delete('/annuler-demande/{id}', [AmisController::class, 'AnnulerDemandeAmitie'])->name('AnnulerDemandeAmitie');
     Route::get('/list-Amis', [AmisController::class, 'showallamisaccepter'])->name('showallamis');
 
 // Routes pour les publication
@@ -48,7 +48,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::post('commentaires/Store', [CommentaireController::class, 'store'])->name('commentaires.store');
     Route::delete('commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
-
 // Routes pour les likes
     Route::post('likePost/{id}', [LikeController::class, 'likePost'])->name('likePost');
 
@@ -59,6 +58,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
 
 // route pour message
     Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index');
+        Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+
 
 });
 
@@ -67,5 +68,3 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
 // Routes pour connexion via Google ou Facebook grâce à Laravel Socialite.
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('social.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('social.callback');
-
-
