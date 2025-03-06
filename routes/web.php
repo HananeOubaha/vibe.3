@@ -57,8 +57,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::get('/profile/posts', [PostController::class, 'profile_auth'])->name('posts.profile');
 
 // route pour message
+
     Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index');
         Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+    Route::get('/chat', [MessageController::class, 'index'])->name('chat');
+    Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send-message');
+
 
 
 });

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\ChMessage;
 use App\Models\Commentaire;
 use App\Models\DemandeAmitie;
 use App\Models\Like;
@@ -17,6 +18,7 @@ class PostController extends Controller
 
     public function index()
     {
+
         $utilisateur = auth()->user();
         $demandesRecues=DemandeAmitie::where('utilisateur_recepteur_id', $utilisateur->id)
             ->where('statut', 'en attente')

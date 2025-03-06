@@ -88,4 +88,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     {
         return $this->last_seen && $this->last_seen->diffInMinutes(Carbon::now()) < 1;
     }
+
+
 }
