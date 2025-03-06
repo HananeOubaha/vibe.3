@@ -2,7 +2,7 @@
     <div class="flex flex-col md:flex-row justify-between items-start min-h-screen gap-6 bg-gradient-to-br from-gray-900 to-indigo-950 mb-8">
         <!-- Sidebar Left -->
         <div class="w-full md:w-72">
-              <x-sidebar-left  />
+            <x-sidebar-left  />
         </div>
         <!-- Main Content -->
         <div class="flex-1 max-w-6xl mx-auto px-4 py-6">
