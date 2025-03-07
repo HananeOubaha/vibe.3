@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\InvitationController;
 use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AmisController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\CommentaireController;
-use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,11 +22,15 @@ use App\Http\Controllers\MessageController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
 ])->group(function () {
 
     Route::get('/demandes', [AmisController::class, 'afficherDemandesAmitie'])->name('afficherDemandesAmitie');
@@ -37,34 +42,31 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::delete('/annuler-demande/{id}', [AmisController::class, 'AnnulerDemandeAmitie'])->name('AnnulerDemandeAmitie');
     Route::get('/list-Amis', [AmisController::class, 'showallamisaccepter'])->name('showallamis');
 
-// Routes pour les publication
+    // Routes pour les publication
     Route::get('posts', [PostController::class, 'index'])->name('posts.index');
     Route::post('posts', [PostController::class, 'store'])->name('posts.store');
     Route::get('posts/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
     Route::put('posts/update/{id}', [PostController::class, 'update'])->name('posts.update');
     Route::delete('posts/delete/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-// Routes pour les commontaire
+    // Routes pour les commontaire
     Route::post('commentaires/Store', [CommentaireController::class, 'store'])->name('commentaires.store');
     Route::delete('commentaires/{id}', [CommentaireController::class, 'destroy'])->name('commentaires.destroy');
 
-// Routes pour les likes
+    // Routes pour les likes
     Route::post('likePost/{id}', [LikeController::class, 'likePost'])->name('likePost');
 
-//profile
+    //profile
     Route::get('/profil/{userId}', Profile::class)->name('profil.show');
 
     Route::get('/profile/posts', [PostController::class, 'profile_auth'])->name('posts.profile');
 
-// route pour message
+    // route pour message
 
     Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index');
-        Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+    Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
     Route::get('/chat', [MessageController::class, 'index'])->name('chat');
     Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send-message');
-
-
-
 });
 
 
@@ -72,3 +74,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
 // Routes pour connexion via Google ou Facebook grâce à Laravel Socialite.
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('social.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('social.callback');
+
+
+
+// delete aut messaged 
+Route::post('/toggle-auto-delete', [SettingController::class, 'toggleAutoDelete'])->name('toggleAutoDelete');
+
+Route::get('/get-auto-delete-status', [SettingController::class, 'getAutoDeleteStatus'])->name('getAutoDeleteStatus');
