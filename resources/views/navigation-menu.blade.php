@@ -37,17 +37,18 @@
                     <!-- Notification Icon -->
                     <button onclick="toggleModal()" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 relative shadow-md">
                         <i class="fas fa-bell text-lg"></i>
-                        <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md animate-pulse">
-                             @if($notifCount > 0)
-                                <span class="badge">{{ $notifCount }}</span>
-                            @endif
-
-                        </span>
                     </button>
 
                     <!-- Messenger Icon -->
-                    <a href="{{ url('/chatify') }}" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md">
-                        <i class="fa-brands fa-facebook-messenger text-xl"></i>
+                    <a href="{{ url('/chatify') }}" class="p-2 bg-indigo-700 rounded-full text-white hover:bg-indigo-600 transition-all duration-300 shadow-md relative">
+                        <i class="fa-brands fa-facebook-messenger text-lg">
+                              <span class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center shadow-md animate-pulse">
+                             @if($notifCount > 0)
+                                      <span class="badge">{{ $notifCount }}</span>
+                                  @endif
+
+                        </span>
+                        </i>
                     </a>
                 </div>
                 <div id="notificationModal" class="hidden fixed top-16 right-1 bg-black text-white p-4 rounded-lg shadow-lg w-96 border border-indigo-500">
@@ -58,9 +59,8 @@
                         </button>
                     </div>
                     <ul class="mt-3 space-y-2">
-                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 1</li>
-                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 2</li>
-                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Nouvelle notification 3</li>
+                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">Yaaaarbi salamaaaa</li>
+                        <li class="p-3 bg-gray-800 rounded-lg hover:bg-gray-700 transition-all duration-300 cursor-pointer">wnaaaaaari 3la kdab </li>
                     </ul>
                 </div>
 
