@@ -49,13 +49,20 @@ class AmisController extends Controller
 
     }
 
-    public  function showallamisaccepter(){
+    public function showallamisaccepter()
+    {
         $user = auth()->user();
+    
+        // Get all friends (both sent and received requests)
         $amis = $user->amisEnvoyes->merge($user->amisRecus);
-        return view('amis', compact('amis'));
+    
+        // Separate online and offline friends
+        $amisEnLigne = $amis->filter(fn($ami) => $ami->is_online);
+        $amisHorsLigne = $amis->filter(fn($ami) => !$ami->is_online);
+    
+        return view('amis', compact('amisEnLigne', 'amisHorsLigne'));
     }
-
-
+    
 
 
 }

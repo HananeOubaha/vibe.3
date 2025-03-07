@@ -27,6 +27,7 @@ class User extends Authenticatable  implements MustVerifyEmail
         'pseudo',
         'prenom',
         'bio',
+        'is_online',
         'last_seen',
         'provider',
         'provider_id',
@@ -70,10 +71,16 @@ class User extends Authenticatable  implements MustVerifyEmail
     public function postes(){
         return $this->hasMany(Post::class,'auteur_id');
     }
+    // public function isOnline()
+    // {
+    //     return $this->last_seen && $this->last_seen->diffInMinutes(Carbon::now()) < 1;
+    // }
+
+
     public function isOnline()
-    {
-        return $this->last_seen && $this->last_seen->diffInMinutes(Carbon::now()) < 1;
-    }
+{
+    return $this->is_online; // Retourne true si l'utilisateur est en ligne
+}
 
 
 }

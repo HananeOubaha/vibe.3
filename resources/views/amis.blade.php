@@ -17,44 +17,44 @@
             </div>
 
             <!-- Friends Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach($amis as $ami)
-                    <div class="bg-gray-800 bg-opacity-70 rounded-lg shadow-lg hover:shadow-indigo-500/30 transition-all duration-300 transform hover:-translate-y-1 border border-gray-700">
-                        <!-- Profile photo -->
-                        <div class="pt-4 flex justify-center">
-                            <a href="{{ route('profil.show', ['userId' => $ami->id]) }}" class="relative">
-                                <div class="relative w-24 h-24 rounded-full border-4 border-gray-800 overflow-hidden mx-auto">
-                                    <img src="{{ $ami->profile_photo_url ?? 'https://via.placeholder.com/50' }}" alt="Avatar" class="w-full h-full object-cover">
-                                    <!-- Online Indicator -->
-                                    <span class="absolute bottom-2 right-2 h-4 w-4 rounded-full ring-2 ring-gray-800 {{ $ami->isOnline() ? 'bg-green-500' : 'bg-gray-400' }}"></span>
-                                </div>
-                            </a>
-                        </div>
+            <div class="p-4 border-t border-gray-200 dark:border-gray-800">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Contacts</h3>
 
-                        <!-- Profile info -->
-                        <div class="px-4 py-3 text-center">
-                            <h3 class="text-xl font-bold text-white hover:text-indigo-300">
-                                <a href="{{ route('profil.show', ['userId' => $ami->id]) }}">{{ $ami->pseudo }}</a>
-                            </h3>
-                            <a href="{{ route('profil.show', ['userId' => $ami->id]) }}" class="text-indigo-200 text-sm block">
-                                {{ $ami->nom }} {{ $ami->prenom }}
-                            </a>
-                        </div>
+    <!-- Online Friends -->
+    <h4 class="text-green-500 font-semibold">🟢 En ligne</h4>
+    <div class="space-y-2">
+        @foreach($amisEnLigne as $ami)
+            <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <div class="relative h-12 w-12 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
+                    <img src="{{ $ami->profile_photo_url ? asset($ami->profile_photo_url) : 'https://via.placeholder.com/50' }}" 
+                         alt="{{ $ami->pseudo }}" 
+                         class="h-full w-full object-cover">
+                    <span class="absolute bottom-1 right-1 block h-3.5 w-3.5 rounded-full bg-green-500 border-2"></span>
+                </div>
+                <span class="ml-3 text-gray-900 dark:text-white font-medium">{{ $ami->pseudo }}</span>
+            </a>
+        @endforeach
+    </div>
 
-                        <!-- Action buttons -->
-                        <div class="px-4 pb-4">
-                            <div class="grid grid-cols-2 gap-2">
-                                <a href="#" class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-3 rounded-md text-sm font-medium">
-                                    <i class="fas fa-comment-alt mr-1"></i> Message
-                                </a>
-                                <a href="{{ route('profil.show', ['userId' => $ami->id]) }}" class="flex items-center justify-center bg-gray-700 hover:bg-gray-600 text-white py-2 px-3 rounded-md text-sm font-medium">
-                                    <i class="fas fa-user-friends mr-1"></i> Voir profil
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+    <!-- Offline Friends -->
+    <h4 class="text-gray-400 font-semibold mt-4">⚪ Hors ligne</h4>
+    <div class="space-y-2">
+        @foreach($amisHorsLigne as $ami)
+            <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                <div class="relative h-12 w-12 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
+                    <img src="{{ $ami->profile_photo_url ? asset($ami->profile_photo_url) : 'https://via.placeholder.com/50' }}" 
+                         alt="{{ $ami->pseudo }}" 
+                         class="h-full w-full object-cover">
+                    <span class="absolute bottom-1 right-1 block h-3.5 w-3.5 rounded-full bg-gray-400 border-2"></span>
+                </div>
+                <span class="ml-3 text-gray-900 dark:text-white font-medium">{{ $ami->pseudo }}</span>
+            </a>
+        @endforeach
+    </div>
+
+    <a href="{{ route('showallamis') }}" class="block text-indigo-500 hover:text-indigo-600 text-sm mt-3">Voir tous les amis</a>
+</div>
+
         </div>
         <!-- Right Sidebar -->
         <div class="w-full md:w-80 bg-gray-800 bg-opacity-70 rounded-lg border border-gray-700 p-4 shadow overflow-y-auto h-auto md:h-screen">
