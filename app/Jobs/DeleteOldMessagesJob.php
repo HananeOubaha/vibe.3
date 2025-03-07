@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Carbon\Carbon;
+use App\Models\Setting;
 use App\Models\ChMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -28,7 +29,10 @@ class DeleteOldMessagesJob implements ShouldQueue
 
     public function handle()
     {
-        // Delete messages older than 24 hours
-        ChMessage::where('created_at', '<', Carbon::now()->subHours(24))->delete();
+        $setting = Setting::first();
+
+        if ($setting && $setting->auto_delete_messages) {
+            ChMessage::where('created_at', '<', now()->subDay())->delete();
+        }
     }
 }

@@ -1,15 +1,16 @@
 <?php
 
-use App\Http\Controllers\InvitationController;
 use App\Livewire\Profile;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\AmisController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
-use App\Http\Controllers\CommentaireController;
-use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\SocialiteController;
+use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\CommentaireController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,3 +74,10 @@ Route::middleware([
 // Routes pour connexion via Google ou Facebook grâce à Laravel Socialite.
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('social.redirect');
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('social.callback');
+
+
+
+// delete aut messaged 
+Route::post('/toggle-auto-delete', [SettingController::class, 'toggleAutoDelete'])->name('toggleAutoDelete');
+
+Route::get('/get-auto-delete-status', [SettingController::class, 'getAutoDeleteStatus'])->name('getAutoDeleteStatus');
