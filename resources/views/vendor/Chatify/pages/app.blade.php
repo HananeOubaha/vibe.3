@@ -62,13 +62,26 @@
                     </div>
                     <a href="" class="user-name">{{ config('chatify.name') }}</a>
                 </div>
+
                 {{-- header buttons --}}
                 <nav class="m-header-right">
+                 
+                        <button id="toggleDeleteBtn" style="margin-left: 10px; padding: 5px 10px; border-radius: 5px; border: none; cursor: pointer;">
+                            <span id="toggleText">Loading...</span>
+                        </button>
+                  
                     <a href="" class="add-to-favorite"><i class="fas fa-star"></i></a>
                     <a href="/posts"><i class="fas fa-home"></i></a>
                     <a href="#" class="show-infoSide"><i class="fas fa-info-circle"></i></a>
+                    
+                    
+
+                  
+                    
+                    
                 </nav>
             </nav>
+            
             {{-- Internet connection --}}
             <div class="internet-connection">
                 <span class="ic-connected">Connected</span>
@@ -112,3 +125,46 @@
 
 @include('Chatify::layouts.modals')
 @include('Chatify::layouts.footerLinks')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let button = document.getElementById("toggleDeleteBtn");
+        let textSpan = document.getElementById("toggleText");
+
+        // Fetch the current auto-delete status
+        fetch("{{ route('getAutoDeleteStatus') }}")
+            .then(response => response.json())
+            .then(data => {
+                updateButton(data.status);
+            });
+
+        // Function to update the button text and style
+        function updateButton(status) {
+            if (status) {
+                textSpan.innerText = "Disable Auto-Delete";
+                button.style.background = "#28a745"; // Green
+                button.style.color = "white";
+            } else {
+                textSpan.innerText = "Enable Auto-Delete";
+                button.style.background = "#ff4d4d"; // Red
+                button.style.color = "white";
+            }
+        }
+
+        // Toggle setting on button click
+        button.addEventListener("click", function () {
+            fetch("{{ route('toggleAutoDelete') }}", {
+                method: "POST",
+                headers: {
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}",
+                    "Content-Type": "application/json"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateButton(data.status);
+            })
+            .catch(error => console.error("Error:", error));
+        });
+    });
+</script>
+
