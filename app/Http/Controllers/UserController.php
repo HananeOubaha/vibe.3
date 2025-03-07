@@ -40,7 +40,10 @@ class UserController extends Controller
 
     }
 
-
+    public function isOnline()
+    {
+        return $this->is_online; // Si tu as un champ `is_online` dans la table `users`
+    }
 
 //    public function show($id)
 //    {
