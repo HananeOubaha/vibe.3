@@ -16,10 +16,11 @@ use Illuminate\Support\Str;
 class MessageController extends Controller
 {
 
-    public function index(){
+    public function index()
+    {
         $users = User::all();
         $notifications = auth()->user()->notifications;
-        return view('messages', data: compact('users','notifications'));
+        return view('messages', data: compact('users', 'notifications'));
     }
 
     public function sendMessage(Request $request)
@@ -49,8 +50,6 @@ class MessageController extends Controller
 
             return response()->json(['error' => 'Failed to send message'], 500);
         }
-
-
     }
 
     public function startChatFromQr(Request $request, $userId)
@@ -86,4 +85,5 @@ class MessageController extends Controller
 
         return (object) ['id' => $message->conversation_id];
     }
+
 }
