@@ -20,11 +20,6 @@ class User extends Authenticatable  implements MustVerifyEmail
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
     protected $fillable = [
         'name',
         'email',
@@ -33,37 +28,28 @@ class User extends Authenticatable  implements MustVerifyEmail
         'prenom',
         'bio',
         'last_seen',
-        'invitation_token', // Ajout du token
-        'invitation_expires_at', // Ajout de la date d'expiration
+        'provider',
+        'provider_id',
+        'provider_token',
+        'profile_photo_path',
+        'email_verified_at',
+        'invitation_token',
+        'invitation_expires_at',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
         'two_factor_recovery_codes',
         'two_factor_secret',
+        'provider_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'invitation_expires_at' => 'datetime', // Ajout du cast pour la date
+        'invitation_expires_at' => 'datetime',
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array<int, string>
-     */
     protected $appends = [
         'profile_photo_url',
     ];
