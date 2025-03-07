@@ -3,9 +3,8 @@
         <div class="flex mx-auto">
             <!-- Left Sidebar - Navigation -->
             <x-sidebar-left />
-            <!-- Main Content - Posts Feed -->
             <div class="w-full md:w-3/2 md:ml-1/5 pt-4 px-4 sm:px-6 md:px-8">
-                <div class="mt-2 bg-white dark:bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-200 dark:border-gray-800 max-w-2xl mx-auto">
+                <div class="mt-2 bg-gray-900 p-4 rounded-xl shadow-lg border border-gray-700 dark:border-gray-800 max-w-2xl mx-auto">
                     <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="flex items-start space-x-3">
@@ -22,7 +21,7 @@
                                 <textarea
                                     name="contenu"
                                     rows="2"
-                                    class="w-full p-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition duration-200 ease-in-out"
+                                    class="w-full p-3 bg-gray-800 dark:bg-gray-800 border border-gray-700 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-gray-100 dark:text-gray-100 placeholder-gray-300 dark:placeholder-gray-300 transition duration-200 ease-in-out"
                                     placeholder="What's on your mind, {{ Auth::user()->name }}?"
                                 ></textarea>
                                 <div id="imagePreview" class="hidden mt-3 relative rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
@@ -35,14 +34,14 @@
                                 </div>
 
                                 <!-- Action Bar -->
-                                <div class="flex flex-wrap justify-between items-center mt-4 border-t border-gray-200 dark:border-gray-700 pt-3">
+                                <div class="flex flex-wrap justify-between items-center mt-4 border-t border-gray-700 dark:border-gray-700 pt-3">
                                     <!-- Attachment Options -->
                                     <div class="flex items-center space-x-2 mb-2 sm:mb-0">
-                                        <label for="image-upload" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition group">
+                                        <label for="image-upload" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-800 cursor-pointer transition group">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                             </svg>
-                                            <span class="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Photo</span>
+                                            <span class="text-sm font-medium text-gray-300 dark:text-gray-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400">Photo</span>
                                         </label>
                                         <input
                                             id="image-upload"
@@ -69,7 +68,7 @@
                 <!-- Posts Feed -->
                 <div class="mt-6 mb-20 space-y-6 max-w-2xl mx-auto">
                     @foreach($posts as $post)
-                        <div class="bg-white dark:bg-gray-800 p-4 rounded-xl shadow-md relative border border-gray-200 dark:border-gray-700 transition-all duration-300 hover:shadow-lg" x-data="{ showComments: false }">
+                        <div class="bg-gray-900 p-4 rounded-xl shadow-md relative border border-gray-700 dark:border-gray-700 transition-all duration-300 hover:shadow-lg" x-data="{ showComments: false }">
                             <!-- Post Header with User Info -->
                             <div class="flex items-center justify-between mb-3">
                                 <div class="flex items-center ">
@@ -79,7 +78,7 @@
                                              alt="{{ $post->auteur?->name ?? 'Utilisateur inconnu' }}">
                                     </a>
                                     <div class="ml-3">
-                                        <a href="{{ route('profil.show', ['userId' => $post->auteur->id]) }}" class="font-medium text-gray-900 dark:text-white">{{ $post->auteur->pseudo }}</a>
+                                        <a href="{{ route('profil.show', ['userId' => $post->auteur->id]) }}" class="font-medium text-gray-50 dark:text-white">{{ $post->auteur->pseudo }}</a>
                                         <p class="text-xs text-gray-500 dark:text-gray-400">{{ $post->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
@@ -90,7 +89,6 @@
                                         <button @click="open = !open" class="p-1 rounded-md text-gray-300 font-bold">
                                             ⋮
                                         </button>
-
                                         <div x-show="open"
                                              @click.away="if (!editModal) open = false"
                                              x-cloak
@@ -100,7 +98,7 @@
                                              x-transition:leave="transition ease-in duration-150"
                                              x-transition:leave-start="transform opacity-100 scale-100"
                                              x-transition:leave-end="transform opacity-0 scale-95"
-                                             class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg z-10 border border-gray-200 dark:border-gray-600">
+                                             class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-700 rounded-md shadow-lg z-10 border border-gray-700 dark:border-gray-600">
                                             <div class="py-1">
                                                 <!-- Edit Button -->
                                                 <button @click.stop="editModal = true; open = false"
@@ -147,7 +145,7 @@
                                                             <textarea
                                                                 name="contenu"
                                                                 rows="2"
-                                                                class="w-full p-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition duration-200 ease-in-out"
+                                                                class="w-full p-3 bg-gray-50 dark:bg-gray-800 border border-gray-700 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none text-gray-50 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition duration-200 ease-in-out"
                                                                 placeholder="Modifier votre post"
                                                             >{{ $post->contenu }}</textarea>
 
@@ -160,7 +158,7 @@
                                                                 </button>
                                                             </div>
 
-                                                            <div class="flex flex-wrap justify-between items-center mt-4 border-t border-gray-200 dark:border-gray-700 pt-3">
+                                                            <div class="flex flex-wrap justify-between items-center mt-4 border-t border-gray-700 dark:border-gray-700 pt-3">
                                                                 <div class="flex items-center space-x-2 mb-2 sm:mb-0">
                                                                     <label for="image_upload_edit" class="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer transition group">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500 group-hover:text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -192,22 +190,17 @@
                                                 </form>
                                             </div>
                                         </div>
-
-
                                     </div>
                                 @endif
-
-
                             </div>
-
-                            <p class="text-gray-800 dark:text-gray-200 mb-3">{{ $post->contenu }}</p>
+                            <p class="text-gray-50 dark:text-gray-200 mb-3">{{ $post->contenu }}</p>
                             @if($post->image)
                                 <div class="rounded-lg overflow-hidden mb-3 transition-transform duration-300 hover:scale-[1.02]">
                                     <img src="{{ asset('storage/' . $post->image) }}" class="w-full h-auto max-h-96 object-contain" alt="Post image">
                                 </div>
                             @endif
 
-                            <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center justify-between mt-4 pt-3 border-t border-gray-700 dark:border-gray-700">
                                 <!-- Bouton Like avec compteur -->
                                 <form action="{{ route('likePost', $post->id) }}" method="post">
                                     @csrf
@@ -245,7 +238,7 @@
                                  x-transition:leave="transition ease-in duration-200"
                                  x-transition:leave-start="opacity-100 transform translate-y-0"
                                  x-transition:leave-end="opacity-0 transform -translate-y-4"
-                                 class="mt-4 pt-3 border-t border-gray-200 dark:border-gray-700">
+                                 class="mt-4 pt-3 border-t border-gray-700 dark:border-gray-700">
 
                                 <!-- Existing Comments -->
                                 <div class="mb-4 space-y-3">
@@ -314,10 +307,10 @@
             </div>
 
             <!-- Right Sidebar - Contacts & Friend Requests -->
-            <div class="hidden lg:block w-1/5 fixed right-0 h-screen pt-2 pb-4 px-2 overflow-y-auto bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800">
+            <div class="hidden lg:block w-1/5 fixed right-0 h-screen pt-2 pb-4 px-2 overflow-y-auto bg-gray-900 border-l border-gray-700 dark:border-gray-800">
                 <!-- Friend Requests Section -->
                 <div class="py-4">
-                    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Friend Requests</h3>
+                    <h3 class="text-lg font-semibold text-white mb-3">Friend Requests</h3>
                     @if($demandesRecues->isEmpty())
                         <div class="p-12 text-center">
                             <div class="relative">
@@ -335,7 +328,7 @@
                                         <div class="flex items-center gap-4">
                                             <div class="relative">
                                                 <img src="{{ $demande->demandeur->profile_photo_url }}"
-                                                     class="w-11 h-11 rounded-2xl object-cover transition-all duration-300
+                                                        class="w-11 h-11 rounded-2xl object-cover transition-all duration-300
                                                          group-hover/item:rounded-full group-hover/item:rotate-2">
                                             </div>
                                             <div>
@@ -384,19 +377,22 @@
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Contacts</h3>
                     <div class="space-y-2">
                         @foreach($amis as $ami)
-                            <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                            <a href="#" class="flex items-center p-2 rounded-lg hover:bg-gray-20  transition">
                                 <div class="relative h-12 w-12 rounded-full overflow-hidden border border-gray-300 dark:border-gray-600">
                                     @if($ami->profile_photo_url)
                                         <img src="{{ asset($ami->profile_photo_url) }}" alt="{{ $ami->name }}" class="h-full w-full object-cover">
                                     @else
-                                        <div class="h-full w-full bg-gray-300 dark:bg-gray-600"></div>
+                                        <div class="h-full w-full bg-gray-300 "></div>
                                     @endif
                                     <!-- Statut en ligne -->
                                     <span class="absolute bottom-1 right-1 block h-3.5 w-3.5 rounded-full
                                         {{ $ami->isOnline() ? 'bg-green-500' : 'bg-gray-400' }} border-2 ">
                                      </span>
                                 </div>
-                                <span class="ml-3 text-gray-900 dark:text-white font-medium">{{ $ami->pseudo }}</span>
+
+                                    <span class="ml-3 text-white font-medium">  {{ $ami->pseudo }} </span>
+
+
                             </a>
 
                         @endforeach

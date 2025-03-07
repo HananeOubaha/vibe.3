@@ -1,3 +1,55 @@
+.messenger-sendCard {
+    display: flex;
+    align-items: center;
+    background: #f3f3f3;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.messenger-sendCard button,
+.messenger-sendCard label {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.3s;
+}
+
+.messenger-sendCard button:hover,
+.messenger-sendCard label:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+textarea.m-send {
+    flex-grow: 1;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    resize: none;
+}
+
+.send-button {
+    color: #007bff;
+}
+.location-button {
+    color: #ff5722;
+}
+.file-button {
+    color: #4caf50;
+}
+.emoji-button {
+    color: #ff9800;
+}
+
+
+
+
+
+
 html,
 body {
   margin: 0;

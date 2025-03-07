@@ -7,10 +7,14 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MessageController;
+
+use App\Http\Controllers\CustomChatifyController;
+
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SocialiteController;
 use App\Http\Controllers\InvitationController;
 use App\Http\Controllers\CommentaireController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,9 +85,15 @@ Route::group(['middleware' => ['auth:sanctum',config('jetstream.auth_session'), 
 
 
 
+    Route::post('/messages/send', [CustomChatifyController::class, 'send'])->name('messages.send');
+
+});
+
+
 Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
     ->name('social.redirect')
     ->middleware('guest');
+
 
 
 Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
