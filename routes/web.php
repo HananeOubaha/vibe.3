@@ -57,18 +57,22 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'), 'verified',
     Route::get('/profile/posts', [PostController::class, 'profile_auth'])->name('posts.profile');
 
 // route pour message
-
-    Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index');
-        Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
-    Route::get('/chat', [MessageController::class, 'index'])->name('chat');
+    //Route::get('/auth/message', [MessageController::class, 'index'])->name('message.index'); // SUPPRIMER CETTE LIGNE
+    Route::get('/invitation/{userId}/{token}', [InvitationController::class, 'accept'])->name('invitation.accept');
+    //Route::get('/chat', [MessageController::class, 'index'])->name('chat'); // SUPPRIMER CETTE LIGNE
     Route::post('/send-message', [MessageController::class, 'sendMessage'])->name('send-message');
+    Route::get('/chat/start/{userId}', [MessageController::class, 'startChatFromQr'])->name('chat.start.qr');
+});
 
-
-
+Route::group(['middleware' => ['auth:sanctum',config('jetstream.auth_session'), 'verified']], function () {
+    Route::get('/chatify/{user}', [MessageController::class, 'index'])->name('chatify');
 });
 
 
+Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])
+    ->name('social.redirect')
+    ->middleware('guest');
 
-// Routes pour connexion via Google ou Facebook grâce à Laravel Socialite.
-Route::get('auth/{provider}', [SocialiteController::class, 'redirectToProvider'])->name('social.redirect');
-Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])->name('social.callback');
+Route::get('auth/{provider}/callback', [SocialiteController::class, 'handleProviderCallback'])
+    ->name('social.callback')
+    ->middleware('guest');
