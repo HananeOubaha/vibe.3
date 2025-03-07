@@ -135,7 +135,7 @@ class MessagesController extends Controller
                 'to_id' => $request['id'],
                 'latitude' => $request->latitude,
                 'longitude' => $request->longitude,
-                'body' => htmlentities(trim($request['message']), ENT_QUOTES, 'UTF-8'),
+                'body' => trim($request['message']),
                 'attachment' => ($attachment) ? json_encode((object)[
                     'new_name' => $attachment,
                     'old_name' => htmlentities(trim($attachment_title), ENT_QUOTES, 'UTF-8'),

@@ -8,7 +8,7 @@
                         .{{implode(', .',config('chatify.attachments.allowed_files'))}}" />
         </label>
 
-        <button type="button" id="btn-send-location" class="location-btn">
+        <button type="button" id="send-location-btn" class="location-btn">
             <span class="fas fa-map-marker-alt"></span>
         </button>
 

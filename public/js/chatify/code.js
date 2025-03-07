@@ -51,8 +51,82 @@
 //     textarea.focus();
 // }
 //
+//document.getElementById('btn-send-location').addEventListener('click', function() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(function(position) {
+//             const latitude = position.coords.latitude;
+//             const longitude = position.coords.longitude;
 //
-document.getElementById('btn-send-location').addEventListener('click', function() {
+//             sendLocation(latitude, longitude);
+//         }, function(error) {
+//             console.log("Erreur de géolocalisation:", error);
+//         });
+//     } else {
+//         alert("La géolocalisation n'est pas supportée par votre navigateur.");
+//     }
+// });
+//
+// function sendLocation(latitude, longitude) {
+//     const apiKey = "YOUR_API_KEY"; // Remplacez par votre clé API valide
+//
+//     // Dynamically generate the location message
+//     const locationMessage = `
+//         <div>
+//             <a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps?q=${latitude},${longitude}">
+//                 Voir sur Google Maps
+//             </a>
+//             <iframe
+//                 width="300"
+//                 height="200"
+//                 style="border:0"
+//                 loading="lazy"
+//                 allowfullscreen
+//                 src="https://www.google.com/maps/embed/v1/view?key=${apiKey}&center=${latitude},${longitude}&zoom=15">
+//             </iframe>
+//         </div>
+//     `;
+//
+//     let formData = new FormData();
+//     formData.append("id", getMessengerId());
+//     formData.append("temporaryMsgId", `temp_${Date.now()}`);
+//     formData.append("_token", csrfToken);
+//     formData.append("message", locationMessage);
+//
+//     $.ajax({
+//         url: $("#message-form").attr("action"),
+//         method: "POST",
+//         data: formData,
+//         dataType: "JSON",
+//         processData: false,
+//         contentType: false,
+//         beforeSend: () => {
+//             $(".messages").find(".message-hint").hide();
+//             messagesContainer.find(".messages").append(
+//                 sendTempMessageCard(locationMessage, `temp_${Date.now()}`)
+//             );
+//             scrollToBottom(messagesContainer);
+//         },
+//         success: (data) => {
+//             if (data.error > 0) {
+//                 console.error(data.error_msg);
+//             } else {
+//                 updateContactItem(getMessengerId());
+//                 let tempMsgCardElement = messagesContainer.find(
+//                     `.message-card[data-id=${data.tempID}]`
+//                 );
+//                 tempMsgCardElement.before(data.message);
+//                 tempMsgCardElement.remove();
+//                 scrollToBottom(messagesContainer);
+//                 sendContactItemUpdates(true);
+//             }
+//         },
+//         error: () => {
+//             console.error("Échec de l'envoi du message de localisation.");
+//         },
+//     });
+// }
+
+document.getElementById('send-location-btn').addEventListener('click', function() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
             const latitude = position.coords.latitude;
@@ -60,7 +134,7 @@ document.getElementById('btn-send-location').addEventListener('click', function(
 
             sendLocation(latitude, longitude);
         }, function(error) {
-            console.log("waaaaaaaaaaaaaaaaaaaaaa:", error);
+            console.log("waaaaaaaacharaf:", error);
         });
     } else {
         alert("Geolocation is not supported on your browser.");
@@ -109,8 +183,6 @@ function sendLocation(latitude, longitude) {
         },
     });
 }
-
-
 /**
  *-------------------------------------------------------------
  * Global variables
